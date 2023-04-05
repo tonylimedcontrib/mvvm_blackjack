@@ -5,7 +5,11 @@ import 'package:playing_cards/playing_cards.dart';
 // ----------------------------------------------------------------------------
 
 class GameViewModel with ChangeNotifier {
-  final Game _game = Game();
+  late Game _game;
+
+  GameViewModel(Game game) {
+    _game = game;
+  }
 
   // ----------------------------------------------------------------------------
 
