@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:mvvm_blackjack/models/data_layer.dart';
 import 'package:mvvm_blackjack/viewmodels/game_viewmodel.dart';
 import 'package:mvvm_blackjack/views/game_view.dart';
 
@@ -12,7 +13,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => GameViewModel(),
+          create: (_) => GameViewModel(Game()),
         ),
       ],
       child: const MainApp(),
