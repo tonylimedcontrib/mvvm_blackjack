@@ -18,34 +18,18 @@ class Game {
   final Deck _deck = Deck();
   final List<PlayingCard> _houseCards = <PlayingCard>[];
   final List<PlayingCard> _playerCards = <PlayingCard>[];
-  bool _houseChecked = false;
-  bool _playerStayed = false;
   GameResult _result = GameResult.none;
 
   // ----------------------------------------------------------------------------
 
   List<PlayingCard> get houseCards => _houseCards;
   List<PlayingCard> get playerCards => _playerCards;
-  bool get houseHasChecked => _houseChecked;
-  bool get playerHasStayed => _playerStayed;
   GameResult get result => _result;
 
   // ----------------------------------------------------------------------------
 
   reset() {
     _readyForNextGame();
-  }
-
-  // ----------------------------------------------------------------------------
-
-  houseCheck() {
-    _houseChecked = true;
-  }
-
-  // ----------------------------------------------------------------------------
-
-  playerStay() {
-    _playerStayed = true;
   }
 
   // ----------------------------------------------------------------------------
@@ -140,8 +124,6 @@ class Game {
     _deck.initialize();
     _houseCards.clear();
     _playerCards.clear();
-    _houseChecked = false;
-    _playerStayed = false;
   }
 
   // ----------------------------------------------------------------------------
