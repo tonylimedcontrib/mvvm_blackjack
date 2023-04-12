@@ -72,7 +72,7 @@ class _GameViewState extends State<GameView> {
       List<PlayingCard> cards,
       List<Widget> actionList,
       {
-        onlyLastCardUp=true,
+        onlyFirstCardDown=true,
         isPlayer=false,
         countPlayerAceAs11=false,
       }) {
@@ -91,8 +91,7 @@ class _GameViewState extends State<GameView> {
         cardViewList.add(
           PlayingCardView(
             card: cards[i],
-            // Show back for all cards but last card.
-            showBack: (onlyLastCardUp ? (i < (cards.length - 1)) : false),
+            showBack: (onlyFirstCardDown ? (i == 0) : false),
             shape: cardShape
           )
         );
@@ -105,7 +104,7 @@ class _GameViewState extends State<GameView> {
     else if (cards.length == 1) {
       cardViewListWidget = PlayingCardView(
         card: cards[0],
-        showBack: onlyLastCardUp,
+        showBack: onlyFirstCardDown,
         shape: cardShape
       );
     }
@@ -241,7 +240,11 @@ class _GameViewState extends State<GameView> {
       peekViewRowWidget,
     ];
 
-    return _buildCardsSection(_constGameHouse, _viewModel.houseCards, actionList, onlyLastCardUp: (_viewModel.houseHasChecked == false));
+    return _buildCardsSection(_constGameHouse,
+        _viewModel.houseCards,
+        actionList,
+        onlyFirstCardDown: (_viewModel.houseHasChecked == false)
+    );
   }
 
   // ----------------------------------------------------------------------------
@@ -299,7 +302,7 @@ class _GameViewState extends State<GameView> {
     return _buildCardsSection(_constGamePlayer,
       _viewModel.playerCards,
       actionList,
-      onlyLastCardUp: false,
+      onlyFirstCardDown: false,
       isPlayer: true,
       countPlayerAceAs11: _countPlayerAceAs11
     );
